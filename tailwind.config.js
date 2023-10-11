@@ -45,6 +45,8 @@ module.exports = {
         800: "#37474F",
         900: "#263238",
       },
+      bg: "#F4F7F9",
+      white: "#FFFFFF",
     },
     extend: {
       fontFamily: {},
