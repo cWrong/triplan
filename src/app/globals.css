@@ -9,6 +9,54 @@ body {
 }
 
 @layer components {
+    .text-h1 {
+        @apply text-[40px] font-black tracking-[.006em];
+    }
+    .text-h2 {
+        @apply text-[32px] font-black tracking-[.0048em];
+    }
+    .text-h3 {
+        @apply text-[28px] font-black tracking-[.0042em];
+    }
+    .text-h4 {
+        @apply text-[24px] font-black tracking-[.0036em];
+    }
+    .text-sub1 {
+        @apply text-[20px] font-bold tracking-[.003em];
+    }
+    .text-sub2 {
+        @apply text-[18px] font-bold tracking-[.0027em];
+    }
+    .text-body1B {
+        @apply text-[16px] font-bold tracking-[.0024em];
+    }
+    .text-body1R {
+        @apply text-[16px] font-medium tracking-[.0024em];
+    }
+    .text-body2B {
+        @apply text-[14px] font-bold tracking-[.0022em];
+    }
+    .text-body2R {
+        @apply text-[14px] font-medium tracking-[.0022em];
+    }
+    .text-caption1B {
+        @apply text-[13px] font-bold tracking-[.0020em];
+    }
+    .text-caption1R {
+        @apply text-[13px] font-medium tracking-[.0020em];
+    }
+    .text-caption2B {
+        @apply text-[12px] font-bold tracking-[.0018em];
+    }
+    .text-caption2R {
+        @apply text-[12px] font-medium tracking-[.0018em];
+    }
+    .text-caption3R {
+        @apply text-[10px] font-medium tracking-[.0015em];
+    }
+}
+
+@layer components {
     .g-flex-center {
         @apply flex flex-row items-center justify-center;
     }

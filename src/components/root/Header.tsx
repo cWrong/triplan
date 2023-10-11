@@ -1,3 +1,3 @@
 export default function Header() {
-  return <div>Header</div>;
+  return <header className={"w-full h-[72px] shadow"}>Header</header>;
 }
