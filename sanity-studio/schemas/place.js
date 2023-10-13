@@ -61,7 +61,7 @@ export default {
     {
       title: 'Image',
       name: 'image',
-      type: 'string',
+      type: 'image',
     },
     {
       title: 'Description',
@@ -74,12 +74,14 @@ export default {
       id: 'id',
       name: 'name',
       address: 'address',
+      image: 'image',
     },
     prepare(selection) {
-      const {id, name, address} = selection
+      const {id, name, address, image} = selection
       return {
         title: `[${id}] ${name}`,
         subtitle: address,
+        media: image,
       }
     },
   },
