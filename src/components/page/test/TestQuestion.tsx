@@ -1,7 +1,7 @@
 "use client";
 import PlaceCard from "@/components/page/test/PlaceCard";
 import { useState } from "react";
-import { QuestionType } from "@/service/test/test";
+import { QuestionType } from "@/model/test";
 
 export default function TestQuestion() {
   const [answer, setAnswer] = useState<QuestionType>("None");
