@@ -47,6 +47,7 @@ module.exports = {
       },
       bg: "#F4F7F9",
       white: "#FFFFFF",
+      black: "#000000",
     },
     extend: {
       fontFamily: {},

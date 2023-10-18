@@ -1,37 +1,55 @@
-import { sanityClient } from "@/service/sanity";
+import { sanityClient, urlFor } from "@/service/sanity";
+import { EngDetailPlace, Place, getPlaceId, placeType } from "@/model/place";
 
-export type Place = {
-  id: number;
-  name: string;
-  type?: string[];
-  density?: number;
-  reviewScore?: number;
-  reviewCount?: number;
-  recommendTime?: string;
-  address: string;
-  phone?: string;
-  price?: number;
-  image?: string;
-  description?: string;
-};
-
-export async function addPlace(place: Place) {
+export const addPlace = async (place: EngDetailPlace) => {
   const newPlace = {
-    _id: place.id.toString(),
+    _id: getPlaceId(place.id),
     _type: "place",
-    id: place.id,
-    name: place.name,
-    type: place.type,
-    density: place.density,
-    reviewScore: place.reviewScore,
-    reviewCount: place.reviewCount,
-    recommendTime: place.recommendTime,
-    address: place.address,
-    phone: place.phone,
-    price: place.price,
-    image: place.image,
-    description: place.description,
+    ...place,
   };
 
   await sanityClient.createIfNotExists(newPlace);
-}
+};
+
+export const getPlace = async (placeId: number): Promise<Place> => {
+  const {
+    id,
+    path,
+    name,
+    country,
+    city,
+    province,
+    type,
+    address,
+    phoneNumber,
+    image,
+  } = await sanityClient.fetch<Place>(
+    `
+    *[_type == "${placeType()}" && _id == "${getPlaceId(placeId)}"][0]
+    {
+      id,
+      path,
+      name,
+      country,
+      city,
+      province,
+      type,
+      address,
+      phoneNumber,
+      image
+    }`,
+  );
+
+  return {
+    id,
+    path,
+    name,
+    country,
+    city,
+    province,
+    type,
+    address,
+    phoneNumber,
+    image: urlFor(image).url(),
+  };
+};

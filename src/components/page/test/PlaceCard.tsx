@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { AnswerType, QuestionType } from "@/service/test/test";
+import { AnswerType, QuestionType } from "@/model/test";
 
 type Props = {
   answer: QuestionType;

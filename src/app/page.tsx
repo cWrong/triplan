@@ -12,6 +12,9 @@ export default function Home() {
       <Link href={"/test-result"} className={"text-h2"}>
         test-result
       </Link>
+      <Link href={"/home"} className={"text-h2"}>
+        home
+      </Link>
     </main>
   );
 }
