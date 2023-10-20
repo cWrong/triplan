@@ -9,6 +9,7 @@ export type Place = {
   address: string;
   phoneNumber: string | undefined;
   image: string;
+  description: string | undefined;
 };
 
 export type DetailPlace = Place & {
@@ -17,7 +18,6 @@ export type DetailPlace = Place & {
   reviewCount: number | undefined;
   recommendTime: string | undefined;
   price: string | undefined;
-  description: string | undefined;
 };
 
 export type EngDetailPlace = DetailPlace & {
