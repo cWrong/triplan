@@ -23,6 +23,7 @@ export const getPlace = async (placeId: number): Promise<Place> => {
     address,
     phoneNumber,
     image,
+    description,
   } = await sanityClient.fetch<Place>(
     `
     *[_type == "${placeType()}" && _id == "${getPlaceId(placeId)}"][0]
@@ -36,7 +37,8 @@ export const getPlace = async (placeId: number): Promise<Place> => {
       type,
       address,
       phoneNumber,
-      image
+      image,
+      description
     }`,
   );
 
@@ -51,5 +53,6 @@ export const getPlace = async (placeId: number): Promise<Place> => {
     address,
     phoneNumber,
     image: urlFor(image).url(),
+    description,
   };
 };

@@ -1,4 +1,4 @@
-import { AiOutlineArrowRight } from "react-icons/ai";
+import IconArrowRight from "@/components/common/ui/icons/IconArrowRight";
 
 export default function NextButton() {
   return (
@@ -8,7 +8,7 @@ export default function NextButton() {
       }
     >
       <p className={"text-h2 text-white"}>다음</p>
-      <AiOutlineArrowRight className={"w-[30px] h-[30px] text-white"} />
+      <IconArrowRight />
     </button>
   );
 }
