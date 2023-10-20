@@ -8,6 +8,7 @@ export default function HomePage() {
       {numbers.map((number) => (
         <PlaceCard placeId={number} key={number} />
       ))}
+      <PlaceCard placeId={736} />
     </section>
   );
 }

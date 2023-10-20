@@ -1,4 +1,4 @@
-import { BiTimeFive } from "react-icons/bi";
+import IconClock from "@/components/common/ui/icons/IconClock";
 
 export default function TestInfo() {
   return (
@@ -9,7 +9,7 @@ export default function TestInfo() {
     >
       <p className={"text-h1 text-primary-600"}>Triplan 여행 성격 검사</p>
       <p className={"text-body1R text-primary-400 flex items-center gap-[6px]"}>
-        <BiTimeFive className={"w-[20px] h-[20px] text-primary-400"} />
+        <IconClock />
         6분 내외
       </p>
       <div className={"flex items-center justify-center gap-[100px] h-[400px]"}>
