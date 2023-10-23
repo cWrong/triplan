@@ -53,6 +53,9 @@ body {
     .text-caption2R {
         @apply text-[12px] font-normal tracking-[.0018em];
     }
+    .text-caption3B {
+        @apply text-[10px] font-bold tracking-[.0015em];
+    }
     .text-caption3R {
         @apply text-[10px] font-normal tracking-[.0015em];
     }

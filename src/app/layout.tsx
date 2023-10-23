@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "@/components/root/Header";
 import Footer from "@/components/root/Footer";
+import AuthContext from "@/context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex flex-col w-full`}>
-        <Header />
-        <main className={"grow"}>{children}</main>
-        <Footer />
+        <AuthContext>
+          <Header />
+          <main className={"grow"}>{children}</main>
+          <Footer />
+        </AuthContext>
       </body>
     </html>
   );
