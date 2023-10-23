@@ -1,5 +1,4 @@
 import SurveyQuestion from "@/components/page/survey/SurveyQuestion";
-import NextButton from "@/components/page/survey/NextButton";
 import Button from "@/components/common/ui/button/Button";
 import IconArrowRight from "@/components/common/ui/icons/IconArrowRight";
 
