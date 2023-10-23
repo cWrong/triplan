@@ -1,2 +1,4 @@
 import place from './place'
-export const schemaTypes = [place]
+import user from './user'
+import tti from './tti'
+export const schemaTypes = [place, user, tti]
