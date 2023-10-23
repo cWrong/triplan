@@ -45,6 +45,7 @@ export default async function PlaceCard({ placeId }: Props) {
               width={320}
               height={153}
               className={"object-cover"}
+              priority
             />
             <div className={"absolute top-[16px] left-[16px]"}>
               <ButtonFlip />

@@ -6,9 +6,9 @@ import {schemaTypes} from './schemas'
 export default defineConfig({
   name: 'default',
   title: 'Triplan',
-
   projectId: '220707e0',
-  dataset: 'production',
+  dataset: 'development',
+  // dataset: 'production'
 
   plugins: [deskTool(), visionTool()],
 
