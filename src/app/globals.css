@@ -8,7 +8,12 @@ body {
     height: 100vh;
     overflow-x: auto;
 }
-
+img {
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    user-select: none;
+}
 
 @layer components {
     .text-h1 {

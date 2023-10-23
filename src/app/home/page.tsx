@@ -5,7 +5,7 @@ export default function HomePage() {
 
   return (
     <section className={"text-h1 bg-bg"}>
-      {/*<PlaceCard placeId={1} />*/}
+      {/*<SurveyCard placeId={1} />*/}
       {numbers.map((number) => (
         <PlaceCard placeId={number} key={number} />
       ))}
