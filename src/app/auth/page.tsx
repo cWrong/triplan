@@ -1,8 +1,5 @@
 "use client";
 
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { redirect } from "next/navigation";
 import { useModal } from "@/hooks/useModal";
 import LoginModal from "@/components/root/LoginModal";
 import SignupModal from "@/components/root/SignupModal";
