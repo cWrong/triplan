@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
 import Button from "@/components/common/ui/button/Button";
-import LoginModal from "@/components/root/LoginModal";
-import SignupModal from "@/components/root/SignupModal";
-import { useModal } from "@/hooks/useModal";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import IconProfile from "@/components/common/ui/icons/IconProfile";
 
 export default function Header() {
+  const { data: session } = useSession();
+  const user = session?.user;
   return (
     <header
       className={
@@ -14,16 +14,21 @@ export default function Header() {
       }
     >
       <Link href={"/"}>Logo</Link>
-      <Button
-        size={"big"}
-        type={"filled"}
-        onClick={() => {
-          signIn();
-          // loginModalHandler(true);
-        }}
-      >
-        로그인
-      </Button>
+      {user ? (
+        <Link href={`users/${user.name}`}>
+          <IconProfile />
+        </Link>
+      ) : (
+        <Button
+          size={"big"}
+          type={"filled"}
+          onClick={() => {
+            signIn();
+          }}
+        >
+          로그인
+        </Button>
+      )}
     </header>
   );
 }

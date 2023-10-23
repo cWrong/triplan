@@ -8,7 +8,7 @@ import IconKakao from "@/components/common/ui/icons/IconKakao";
 import { useInput } from "@/hooks/useInput";
 import { useStatus } from "@/hooks/useStatus";
 import { signIn } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type Props = {
   modal: boolean;
@@ -20,6 +20,8 @@ export default function SignupModal({
   modalHandler,
   callbackUrl,
 }: Props) {
+  const router = useRouter();
+
   const [username, usernameOnchange, usernameReset] = useInput("");
   const [password, passwordOnchange, passwordReset] = useInput("");
   const [passCheck, passCheckOnchange, passCheckReset] = useInput("");
@@ -49,8 +51,8 @@ export default function SignupModal({
     signIn("kakao");
   };
   const closeButtonOnclick = () => {
+    router.push(callbackUrl);
     modalHandler(false);
-    redirect(callbackUrl);
   };
   return (
     <Modal modal={modal} modalHandler={modalHandler}>
