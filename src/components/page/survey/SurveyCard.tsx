@@ -32,7 +32,7 @@ export default function SurveyCard({ answer, mine, setAnswer }: Props) {
         className={`${Card_Style} z-0 hover:opacity-90 active:opacity-80`}
       ></Image>
       <Image
-        src={"/images/places/Selected.jpg"}
+        src={"/images/places/Selected.svg"}
         alt={"Selected"}
         width={400}
         height={580}

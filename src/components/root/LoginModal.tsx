@@ -7,7 +7,7 @@ import IconGoogle from "@/components/common/ui/icons/IconGoogle";
 import IconKakao from "@/components/common/ui/icons/IconKakao";
 import { useInput } from "@/hooks/useInput";
 import { signIn } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type Props = {
   modal: boolean;
@@ -21,6 +21,8 @@ export default function LoginModal({
   signupModalHandler,
   callbackUrl,
 }: Props) {
+  const router = useRouter();
+
   const [username, usernameOnchange, usernameReset] = useInput("");
   const [password, passwordOnchange, passwordReset] = useInput("");
 
@@ -46,18 +48,18 @@ export default function LoginModal({
     passwordReset();
   };
   const googleOnclick = () => {
-    signIn("google");
+    signIn("google", { callbackUrl });
   };
   const kakaoOnclick = () => {
-    signIn("kakao");
+    signIn("kakao", { callbackUrl });
   };
   const signupOnclick = () => {
     modalHandler(false);
     signupModalHandler(true);
   };
   const closeButtonOnclick = () => {
-    console.log(callbackUrl);
     modalHandler(false);
+    router.push(callbackUrl);
   };
   return (
     <Modal modal={modal} modalHandler={modalHandler}>
