@@ -29,29 +29,17 @@ export default function LoginModal({
   const submitOnclick = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(username, password);
-
-    // signIn 함수를 사용하여 자체 로그인 요청을 보냅니다.
-    // const result = await signIn('credentials', {
-    //   username,
-    //   password,
-    //   // 필요한 경우 다른 필드도 추가할 수 있습니다.
-    // });
-
-    // 로그인이 성공하면 다음 페이지로 이동할 수 있습니다.
-    // if (result.error) {
-    //   // 로그인 실패 시 오류 메시지를 처리할 수 있습니다.
-    //   console.error(result.error);
-    // }
-
-    usernameReset();
-    passwordReset();
+    const result = await signIn("credentials", {
+      callbackUrl,
+      username,
+      password,
+    });
   };
-  const googleOnclick = () => {
-    signIn("google", { callbackUrl });
+  const googleOnclick = async () => {
+    await signIn("google", { callbackUrl });
   };
-  const kakaoOnclick = () => {
-    signIn("kakao", { callbackUrl });
+  const kakaoOnclick = async () => {
+    await signIn("kakao", { callbackUrl });
   };
   const signupOnclick = () => {
     modalHandler(false);

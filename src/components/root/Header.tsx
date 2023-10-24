@@ -15,7 +15,7 @@ export default function Header() {
     >
       <Link href={"/"}>Logo</Link>
       {user ? (
-        <Link href={`users/${user.name}`}>
+        <Link href={`/my/${user.name}`}>
           <IconProfile />
         </Link>
       ) : (
