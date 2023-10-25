@@ -8,7 +8,7 @@ export default defineConfig({
   title: 'Triplan',
   projectId: '220707e0',
   dataset: 'development',
-  // dataset: 'production'
+  // dataset: 'production',
 
   plugins: [deskTool(), visionTool()],
 
