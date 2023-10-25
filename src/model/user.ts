@@ -9,8 +9,13 @@ export type User = {
   imageUrl?: string;
   image?: string;
   provider?: string;
-  pwHash: string;
+  pwHash?: string;
 };
+
+export type UserRequest = Pick<
+  User,
+  "username" | "name" | "email" | "imageUrl" | "provider"
+>;
 
 export type SanityUser = User & DocumentMetadata;
 
@@ -25,3 +30,9 @@ export type CredentialUserHashed = {
 };
 
 export const userType = "user";
+
+export const providerType = {
+  credential: "credential",
+  google: "google",
+  kakao: "kakao",
+};

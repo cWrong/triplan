@@ -2,6 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import KakaoProvider from "next-auth/providers/kakao";
+import { addOAuthUser } from "@/service/auth/auth";
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -39,11 +40,14 @@ const authOptions: NextAuthOptions = {
   },
   callbacks: {
     signIn: async ({ user, account, profile, email, credentials }) => {
-      // console.log(user);
-      // console.log(account);
-      // console.log(profile);
-      // console.log(email);
-      // console.log(credentials);
+      await addOAuthUser({
+        username: user.email?.split("@")[0] || "",
+        name: user.name || "",
+        email: user.email || "",
+        imageUrl: user.image || "",
+        provider: account?.provider,
+      });
+
       return true;
     },
   },
