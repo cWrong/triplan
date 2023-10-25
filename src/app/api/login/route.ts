@@ -15,7 +15,7 @@ export async function POST(request: Request) {
   }
 
   const userData = await getUserByUsername(user.username);
-  if (!userData) {
+  if (!userData || !userData.pwHash) {
     return Response.json(
       { message: "유저 정보를 찾을 수 없습니다." },
       { status: 500, statusText: "Internal Server Error" },
