@@ -14,6 +14,18 @@ export default function Header() {
       }
     >
       <Link href={"/"}>Logo</Link>
+      <Link href={"/plan"} className={"text-h2"}>
+        plan
+      </Link>
+      <Link href={"/survey"} className={"text-h2"}>
+        survey
+      </Link>
+      <Link href={"/test-result"} className={"text-h2"}>
+        test-result
+      </Link>
+      <Link href={"/home"} className={"text-h2"}>
+        home
+      </Link>
       {user ? (
         <Link href={`/my/${user.name}`}>
           <IconProfile />
