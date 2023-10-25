@@ -26,7 +26,7 @@ export const getPlace = async (placeId: number): Promise<Place> => {
     description,
   } = await sanityClient.fetch<Place>(
     `
-    *[_type == "${placeType()}" && id == ${placeId}][0]
+    *[_type == "${placeType}" && id == ${placeId}][0]
     {
       id,
       path,
