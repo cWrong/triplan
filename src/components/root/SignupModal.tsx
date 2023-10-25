@@ -1,6 +1,6 @@
 import Modal from "@/components/common/ui/modal/Modal";
 import IconClose from "@/components/common/ui/icons/IconClose";
-import React from "react";
+import React, { useState } from "react";
 import Input from "@/components/common/ui/input/Input";
 import Button from "@/components/common/ui/button/Button";
 import IconGoogle from "@/components/common/ui/icons/IconGoogle";
@@ -9,6 +9,8 @@ import { useInput } from "@/hooks/useInput";
 import { useStatus } from "@/hooks/useStatus";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { signUp } from "@/api/auth/auth";
+import { hashing } from "@/utils/password";
 
 type Props = {
   modal: boolean;
@@ -26,29 +28,62 @@ export default function SignupModal({
   const [password, passwordOnchange, passwordReset] = useInput("");
   const [passCheck, passCheckOnchange, passCheckReset] = useInput("");
 
-  const [error, setError] = useStatus(false);
+  const [usernameError, setUsernameError] = useStatus(false);
+  const [pwError, setPwError] = useStatus(false);
+  const [pwCheckError, setPwCheckError] = useStatus(false);
+  const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
+  const [pwErrorMessage, setPwErrorMessage] = useState("");
+  const [pwCheckErrorMessage, setPwCheckErrorMessage] = useState("");
 
-  const submitOnclick = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitOnclick = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (password !== passCheck) {
-      console.log("password error");
-      setError(true);
+    if (username.length === 0) {
+      setUsernameError(true);
+      setUsernameErrorMessage("아이디를 입력하세요.");
+
+      setPwError(false);
+      setPwCheckError(false);
       return;
     }
 
-    console.log(username, password);
+    if (password.length === 8) {
+      setPwError(true);
+      setPwErrorMessage("비밀번호를 입력하세요.");
+
+      setUsernameError(false);
+      setPwCheckError(false);
+      return;
+    }
+
+    if (password !== passCheck) {
+      setPwCheckError(true);
+      setPwCheckErrorMessage("비밀번호가 일치하지 않습니다.");
+
+      setUsernameError(false);
+      setPwError(false);
+      return;
+    }
+
+    const res = await signUp({ username, password });
+    if (!res.status) {
+      setUsernameError(true);
+      setUsernameErrorMessage(res.message);
+
+      setPwError(false);
+      setPwCheckError(false);
+      return;
+    }
 
     usernameReset();
     passwordReset();
     passCheckReset();
-    setError(false);
   };
-  const googleOnclick = () => {
-    signIn("google");
+  const googleOnclick = async () => {
+    await signIn("google");
   };
-  const kakaoOnclick = () => {
-    signIn("kakao");
+  const kakaoOnclick = async () => {
+    await signIn("kakao");
   };
   const closeButtonOnclick = () => {
     router.push(callbackUrl);
@@ -69,6 +104,8 @@ export default function SignupModal({
               placeholder={"아이디를 입력하세요."}
               type={"text"}
               onChange={usernameOnchange}
+              error={usernameError}
+              errorMessage={usernameErrorMessage}
             />
             <Input
               required={true}
@@ -76,6 +113,8 @@ export default function SignupModal({
               placeholder={"비밀번호를 입력하세요."}
               type={"password"}
               onChange={passwordOnchange}
+              error={pwError}
+              errorMessage={pwErrorMessage}
             />
             <Input
               required={true}
@@ -83,8 +122,8 @@ export default function SignupModal({
               placeholder={"비밀번호를 입력하세요."}
               type={"password"}
               onChange={passCheckOnchange}
-              error={error}
-              errorMessage={"비밀번호가 일치하지 않습니다."}
+              error={pwCheckError}
+              errorMessage={pwCheckErrorMessage}
             />
           </div>
           <div>

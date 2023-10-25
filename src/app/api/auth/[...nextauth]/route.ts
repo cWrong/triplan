@@ -20,24 +20,32 @@ const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        const res = await fetch("/api/user/login", {
+        const response = await fetch(`${process.env.NEXTAUTH_URL}/api/login`, {
           method: "POST",
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" },
         });
-        const user = await res.json();
+        const res = await response.json();
 
-        // If no error and we have user data, return it
-        if (res.ok && user) {
-          return user;
+        if (response.ok && res) {
+          return res;
         }
-        // Return null if user data could not be retrieved
         return null;
       },
     }),
   ],
   pages: {
     signIn: "/auth/signin",
+  },
+  callbacks: {
+    signIn: async ({ user, account, profile, email, credentials }) => {
+      // console.log(user);
+      // console.log(account);
+      // console.log(profile);
+      // console.log(email);
+      // console.log(credentials);
+      return true;
+    },
   },
 };
 

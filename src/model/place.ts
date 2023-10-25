@@ -32,6 +32,4 @@ export const getPlaceId = (id: number) => {
   return `place.${id}`;
 };
 
-export const placeType = () => {
-  return `place`;
-};
+export const placeType = "place";
