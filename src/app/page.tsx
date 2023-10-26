@@ -23,10 +23,10 @@ export default function Home() {
         />
         <div className={"absolute top-1/3 flex flex-col gap-[40px] px-[100px]"}>
           <div>
-            <p className={"text-h1 text-white"}>
+            <p className={"text-h2 text-white display:text-h1"}>
               여행지, 어디로 갈지 고민 중이신가요?
             </p>
-            <p className={"text-h1 text-white"}>
+            <p className={"text-h2 text-white display:text-h1"}>
               Triplan에서 여행 선호 유형에 맞는 계획을 세워 드려요!
             </p>
           </div>
@@ -48,7 +48,9 @@ export default function Home() {
               className={"object-cover w-full h-full"}
             />
           </Card>
-          <div className={"flex flex-col gap-[12px] w-[600px]"}>
+          <div
+            className={"flex flex-col gap-[12px] w-[420px] display:w-[600px]"}
+          >
             <p className={"text-h2"}>설문조사</p>
             <p className={"text-body1R"}>
               간단한 카드 선택으로 찾을 수 있는 여행 선호 유형 검사
@@ -58,7 +60,11 @@ export default function Home() {
         <div
           className={"flex justify-center items-center gap-[80px] px-[40px]"}
         >
-          <div className={"flex flex-col text-right gap-[12px] w-[600px]"}>
+          <div
+            className={
+              "flex flex-col text-right gap-[12px] w-[420px] display:w-[600px]"
+            }
+          >
             <p className={"text-h2"}>결과</p>
             <p className={"text-body1R"}>
               여행 선호 유형 확인 및 유형에 맞는 여행지 추천
@@ -82,7 +88,9 @@ export default function Home() {
               className={"object-cover w-full h-full"}
             />
           </Card>
-          <div className={"flex flex-col gap-[12px] w-[600px]"}>
+          <div
+            className={"flex flex-col gap-[12px] w-[420px] display:w-[600px]"}
+          >
             <p className={"text-h2"}>계획</p>
             <p className={"text-body1R"}>
               여행 선호 유형에 맞는 여행 계획 추천
