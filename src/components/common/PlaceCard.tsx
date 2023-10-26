@@ -29,12 +29,15 @@ export default async function PlaceCard({ placeId }: Props) {
   return (
     <section
       className={
-        "w-[320px] h-[440px] rounded-[16px] bg-white overflow-hidden group [perspective:1000px]"
+        "w-[320px] h-[440px] rounded-[16px] overflow-hidden [perspective:1000px]"
       }
     >
+      <div className={"absolute top-[20px] left-[16px] z-10 peer"}>
+        <ButtonFlip />
+      </div>
       <div
         className={
-          "relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] [backface-visibility:hidden]"
+          "relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] peer-hover:[transform:rotateY(180deg)] [backface-visibility:hidden]"
         }
       >
         <div className={"absolute inset-0"}>
@@ -47,16 +50,14 @@ export default async function PlaceCard({ placeId }: Props) {
               className={"object-cover"}
               priority
             />
-            <div className={"absolute top-[16px] left-[16px]"}>
-              <ButtonFlip />
-            </div>
+
             <div className={"absolute right-[16px] bottom-[16px]"}>
-              <ButtonLike status={false} />
+              <ButtonLike placeId={id} status={false} />
             </div>
           </div>
           <div
             className={
-              "flex flex-col justify-between gap-[20px] px-[16px] py-[20px]"
+              "flex flex-col justify-between bg-white gap-[20px] px-[16px] py-[20px]"
             }
           >
             <div className={"flex flex-col justify-between gap-[4px]"}>
@@ -129,8 +130,7 @@ export default async function PlaceCard({ placeId }: Props) {
             height={440}
             className={"absolute inset-0 h-full object-cover -z-20"}
           />
-          <ButtonFlip />
-          <p className={"text-sub1 text-white"}>{name}</p>
+          <p className={"text-sub1 text-white pt-[60px]"}>{name}</p>
           <p className={"text-body1R text-white"}>{description}</p>
         </div>
       </div>
