@@ -3,6 +3,7 @@ import Link from "next/link";
 import Button from "@/components/common/ui/button/Button";
 import { signIn, useSession } from "next-auth/react";
 import IconProfile from "@/components/common/ui/icons/IconProfile";
+import Logo from "@/components/common/ui/logo/Logo";
 
 export default function Header() {
   const { data: session } = useSession();
@@ -13,7 +14,9 @@ export default function Header() {
         "flex items-center justify-between w-full h-[80px] px-[80px] py-[16px]"
       }
     >
-      <Link href={"/"}>Logo</Link>
+      <Link href={"/"}>
+        <Logo size={"small"} />
+      </Link>
       <Link href={"/plan"} className={"text-h4"}>
         plan
       </Link>
