@@ -4,6 +4,7 @@ import IconLocation from "@/components/common/ui/icons/IconLocation";
 import IconPhone from "@/components/common/ui/icons/IconPhone";
 import ButtonLike from "@/components/common/ui/button/ButtonLike";
 import ButtonFlip from "@/components/common/ui/button/ButtonFlip";
+import GaugeBar from "@/components/common/ui/bar/GaugeBar";
 
 type Props = {
   placeId: number;
@@ -24,7 +25,7 @@ export default async function PlaceCard({ placeId }: Props) {
   } = await getPlace(placeId);
 
   // [!] should change
-  const fitness: number = 64;
+  const fitness: number = 57;
 
   return (
     <section
@@ -103,15 +104,7 @@ export default async function PlaceCard({ placeId }: Props) {
             <div>
               <p className={"text-caption2B text-black"}>적합도</p>
               <div className={"flex items-center gap-[8px]"}>
-                <div
-                  className={
-                    "relative h-[12px] w-full rounded-full bg-gray-100 "
-                  }
-                >
-                  <div
-                    className={`absolute top-0 left-0 h-[12px] w-[${fitness}%] rounded-full bg-primary-600 z-10`}
-                  ></div>
-                </div>
+                <GaugeBar size={"small"} gauge={fitness} />
                 <span className={"text-sub2 text-primary-600"}>{fitness}%</span>
               </div>
             </div>
