@@ -49,6 +49,12 @@ module.exports = {
       white: "#FFFFFF",
       black: "#000000",
     },
+    screens: {
+      mob: { max: "767px" },
+      tab: { max: "1023px" },
+      desk: { min: "1024px" },
+      display: { min: "1440px" },
+    },
     extend: {
       fontFamily: {},
     },

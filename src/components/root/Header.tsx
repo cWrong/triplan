@@ -3,6 +3,7 @@ import Link from "next/link";
 import Button from "@/components/common/ui/button/Button";
 import { signIn, useSession } from "next-auth/react";
 import IconProfile from "@/components/common/ui/icons/IconProfile";
+import Logo from "@/components/common/ui/logo/Logo";
 
 export default function Header() {
   const { data: session } = useSession();
@@ -13,21 +14,23 @@ export default function Header() {
         "flex items-center justify-between w-full h-[80px] px-[80px] py-[16px]"
       }
     >
-      <Link href={"/"}>Logo</Link>
-      <Link href={"/plan"} className={"text-h2"}>
+      <Link href={"/"}>
+        <Logo size={"small"} />
+      </Link>
+      <Link href={"/plan"} className={"text-h4"}>
         plan
       </Link>
-      <Link href={"/survey"} className={"text-h2"}>
-        survey
+      <Link href={"/survey"} className={"text-h4"}>
+        surveys
       </Link>
-      <Link href={"/test-result"} className={"text-h2"}>
+      <Link href={"/test-result"} className={"text-h4"}>
         test-result
       </Link>
-      <Link href={"/home"} className={"text-h2"}>
-        home
+      <Link href={"/my-list"} className={"text-h4"}>
+        my-list
       </Link>
       {user ? (
-        <Link href={`/my/${user.name}`}>
+        <Link href={`/profile/${user.name}`}>
           <IconProfile />
         </Link>
       ) : (

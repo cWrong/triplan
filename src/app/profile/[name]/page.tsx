@@ -4,14 +4,14 @@ import { signOut } from "next-auth/react";
 
 type Props = {
   params: {
-    name: string;
+    username: string;
   };
 };
 
-export default function MyPage({ params: { name } }: Props) {
+export default function ProfilePage({ params: { username } }: Props) {
   return (
     <section>
-      <h1>{name} MyPage</h1>
+      <h1>{username} Profile Page</h1>
       <Button
         size={"big"}
         type={"filled"}
