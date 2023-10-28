@@ -7,11 +7,12 @@ export const getUserById = async (id: number): Promise<SanityUser> => {
   `);
 };
 
-export const getUserByUsername = async (
+export const getUserByUsernameAndProvider = async (
   username: string,
+  provider: string,
 ): Promise<SanityUser> => {
   return await sanityClient.fetch<SanityUser>(`
-    *[_type == "${userType}" && username == "${username}"][0]
+    *[_type == "${userType}" && username == "${username}" && provider == "${provider}"][0]
   `);
 };
 

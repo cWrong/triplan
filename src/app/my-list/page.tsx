@@ -1,14 +1,26 @@
 import React from "react";
-import PlaceCard from "@/components/common/PlaceCard";
+import MyPlaceList from "@/components/page/my-list/MyPlaceList";
+import MyPlanList from "@/components/page/my-list/MyPlanList";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default function MyListPage() {
-  const numbers = Array.from({ length: 10 }, (_, index) => index + 1);
+export default async function MyListPage() {
+  const session = await getServerSession();
+  console.log("session", session);
+  if (!session) {
+    redirect("/auth/signin");
+  }
 
   return (
-    <section className={"text-h1 bg-bg"}>
-      {numbers.map((number) => (
-        <PlaceCard placeId={number} key={number} />
-      ))}
+    <section className={"bg-bg"}>
+      <div className={"py-[40px]"}>
+        <p className={"px-[80px] py-[20px] text-sub2"}>추천 여행지 리스트</p>
+        <MyPlaceList />
+      </div>
+      <div className={"py-[40px]"}>
+        <p className={"px-[80px] py-[20px] text-sub2"}>내 여행 계획</p>
+        <MyPlanList />
+      </div>
     </section>
   );
 }

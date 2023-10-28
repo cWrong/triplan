@@ -1,4 +1,4 @@
-import LogoImage from "public/images/logo/logo.jpg";
+import LogoText from "public/images/logo/logo_text.svg";
 import Image from "next/image";
 
 type Props = {
@@ -8,11 +8,9 @@ type Props = {
 export default function Logo({ size }: Props) {
   return (
     <Image
-      src={LogoImage}
+      src={LogoText}
       alt={"Triplan"}
-      className={`${
-        size === "small" ? "w-[40px] h-[40px]" : "w-[60px] h-[60px]"
-      }`}
+      className={`${size === "small" ? "h-[40px]" : "h-[60px]"} w-fit`}
     />
   );
 }

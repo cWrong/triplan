@@ -6,16 +6,18 @@ export type User = {
   name?: string;
   nickname?: string;
   email?: string;
-  imageUrl?: string;
   image?: string;
+  customImage?: string;
   provider?: string;
   pwHash?: string;
 };
 
 export type UserRequest = Pick<
   User,
-  "username" | "name" | "email" | "imageUrl" | "provider"
+  "username" | "name" | "email" | "image" | "provider"
 >;
+
+export type UserSession = Pick<User, "id" | "name" | "email" | "image">;
 
 export type SanityUser = User & DocumentMetadata;
 
@@ -29,10 +31,14 @@ export type CredentialUserHashed = {
   pwHash: string;
 };
 
+export const getUserId = (id: number) => {
+  return `${userType}.${id}`;
+};
+
 export const userType = "user";
 
 export const providerType = {
-  credential: "credential",
+  credentials: "credentials",
   google: "google",
   kakao: "kakao",
 };

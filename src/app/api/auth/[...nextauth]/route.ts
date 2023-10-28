@@ -2,8 +2,11 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import KakaoProvider from "next-auth/providers/kakao";
-import { addOAuthUser } from "@/service/auth/auth";
+import { getOrCreateUser } from "@/service/auth/auth";
+import { UserSession } from "@/model/user";
 
+// @ts-ignore
+// @ts-ignore
 const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -40,15 +43,22 @@ const authOptions: NextAuthOptions = {
   },
   callbacks: {
     signIn: async ({ user, account, profile, email, credentials }) => {
-      await addOAuthUser({
-        username: user.email?.split("@")[0] || "",
-        name: user.name || "",
-        email: user.email || "",
-        imageUrl: user.image || "",
-        provider: account?.provider,
-      });
+      if (account?.provider === "credentials") {
+        return true;
+      } else {
+        const currentUser = await getOrCreateUser(
+          {
+            username: user.email?.split("@")[0] || "",
+            name: user.name || "",
+            email: user.email || "",
+            image: user.image || "",
+            provider: account?.provider,
+          },
+          account?.provider,
+        );
 
-      return true;
+        return currentUser > 0;
+      }
     },
   },
 };

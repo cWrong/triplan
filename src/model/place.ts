@@ -29,7 +29,7 @@ export type EngDetailPlace = DetailPlace & {
 export type SimplePlace = Pick<Place, "id" | "name">;
 
 export const getPlaceId = (id: number) => {
-  return `place.${id}`;
+  return `${placeType}.${id}`;
 };
 
 export const placeType = "place";

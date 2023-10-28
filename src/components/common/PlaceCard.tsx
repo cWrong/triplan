@@ -5,24 +5,26 @@ import IconPhone from "@/components/common/ui/icons/IconPhone";
 import ButtonLike from "@/components/common/ui/button/ButtonLike";
 import ButtonFlip from "@/components/common/ui/button/ButtonFlip";
 import GaugeBar from "@/components/common/ui/bar/GaugeBar";
+import { getServerSession } from "next-auth";
+import { Place } from "@/model/place";
 
 type Props = {
-  placeId: number;
+  place: Place;
 };
 
-export default async function PlaceCard({ placeId }: Props) {
+export default async function PlaceCard({ place }: Props) {
   const {
     id,
-    path,
     name,
     country,
     city,
-    type,
     address,
     phoneNumber,
-    image,
+    type,
     description,
-  } = await getPlace(placeId);
+    image,
+    path,
+  } = place;
 
   // [!] should change
   const fitness: number = 57;

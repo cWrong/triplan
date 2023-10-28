@@ -34,13 +34,13 @@ export default {
       validation: (Rule) => Rule.email(),
     },
     {
-      title: 'ImageURL',
-      name: 'imageUrl',
+      title: 'Image',
+      name: 'image',
       type: 'string',
     },
     {
-      title: 'Image',
-      name: 'Image',
+      title: 'CustomImage',
+      name: 'customImage',
       type: 'image',
     },
     {
@@ -59,14 +59,14 @@ export default {
       id: 'id',
       username: 'username',
       provider: 'provider',
-      media: 'image',
+      customImage: 'customImage',
     },
     prepare(selection) {
-      const {id, username, provider, media} = selection
+      const {id, username, provider, customImage} = selection
       return {
         title: `[${id}] ${username}`,
         subtitle: provider,
-        media: media,
+        media: customImage,
       }
     },
   },

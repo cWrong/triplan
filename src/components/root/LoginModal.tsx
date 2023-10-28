@@ -6,7 +6,7 @@ import Button from "@/components/common/ui/button/Button";
 import IconGoogle from "@/components/common/ui/icons/IconGoogle";
 import IconKakao from "@/components/common/ui/icons/IconKakao";
 import { useInput } from "@/hooks/useInput";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -29,17 +29,17 @@ export default function LoginModal({
   const submitOnclick = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const result = await signIn("credentials", {
+    await signIn("credentials", {
       callbackUrl,
       username,
       password,
     });
   };
   const googleOnclick = async () => {
-    await signIn("google", { callbackUrl });
+    await signIn("google", { callbackUrl, redirect: false });
   };
   const kakaoOnclick = async () => {
-    await signIn("kakao", { callbackUrl });
+    await signIn("kakao", { callbackUrl, redirect: false });
   };
   const signupOnclick = () => {
     modalHandler(false);
