@@ -14,19 +14,14 @@ import {
 export const getOrCreateUser = async (
   user: UserRequest,
   provider: string | undefined,
-): Promise<number> => {
-  if (!provider) return 0;
+): Promise<SanityUser | null> => {
+  if (!provider) return null;
 
   if (!(await isNewUser(user.username, provider))) {
-    const currentUser = await getUserByUsernameAndProvider(
-      user.username,
-      provider,
-    );
-    return currentUser.id;
+    return await getUserByUsernameAndProvider(user.username, provider);
   }
 
   const cntUser = await getUserNumber();
-
   const newUser: SanityUser = {
     _id: `user.${cntUser + 1}`,
     _type: userType,
@@ -34,8 +29,7 @@ export const getOrCreateUser = async (
     ...user,
   };
 
-  const res = await sanityClient.createIfNotExists(newUser);
-  return res.id;
+  return await sanityClient.createIfNotExists(newUser);
 };
 
 export const addCredentialUser = async (

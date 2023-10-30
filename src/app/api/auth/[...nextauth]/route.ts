@@ -3,10 +3,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import KakaoProvider from "next-auth/providers/kakao";
 import { getOrCreateUser } from "@/service/auth/auth";
-import { UserSession } from "@/model/user";
+import { SanityAdapter, SanityCredentials } from "next-auth-sanity";
+import { sanityClient } from "@/service/sanity";
 
-// @ts-ignore
-// @ts-ignore
 const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -56,8 +55,8 @@ const authOptions: NextAuthOptions = {
           },
           account?.provider,
         );
-
-        return currentUser > 0;
+        if (!currentUser) return false;
+        return true;
       }
     },
   },

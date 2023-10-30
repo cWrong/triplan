@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import Header from "@/components/root/Header";
 import Footer from "@/components/root/Footer";
 import AuthContext from "@/context/AuthContext";
+import { RecoilRoot } from "recoil";
 
 const inter = Inter({ subsets: ["latin"] });
 
