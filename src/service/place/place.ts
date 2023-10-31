@@ -1,6 +1,10 @@
 import { sanityClient, urlFor } from "@/service/sanity";
 import { EngDetailPlace, Place, getPlaceId, placeType } from "@/model/place";
-import { RecommendInfo, recommendPlaceType } from "@/model/recommendPlace";
+import {
+  RecommendInfo,
+  RecommendPlace,
+  recommendPlaceType,
+} from "@/model/recommendPlace";
 import { getUserId } from "@/model/user";
 
 export const addPlace = async (place: EngDetailPlace) => {
@@ -38,13 +42,19 @@ export const getPlace = async (placeId: number): Promise<Place> => {
   };
 };
 
-export const getRecommendPlaceList = async (
-  userId: number,
-): Promise<RecommendInfo[]> => {
-  const res = await sanityClient.fetch<RecommendInfo[]>(
+export const getRecommendPlaceListByEmail = async (
+  email: string,
+): Promise<RecommendPlace[]> => {
+  const res = await sanityClient.fetch<RecommendPlace[]>(
     `
-    *[_type == "${recommendPlaceType}" && user._ref == '${getUserId(userId)}']
-    .places[]{
+    *[_type == "recommendPlace"]{
+      ...,
+      "user": *[
+        _type == "user" && 
+        email == "sjy0175@gmail.com" && 
+        recommendPlace._ref == ^._id
+      ]
+    }.places[]{
       fitness,
       star, 
       place->{

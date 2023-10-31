@@ -1,14 +1,14 @@
 import { Place } from "@/model/place";
 import { User } from "@/model/user";
 
-export type RecommendInfo = {
+export type RecommendPlace = {
   place: Place;
   fitness: number;
   star: boolean;
 };
 
-export type RecommendPlace = User & {
-  places: RecommendInfo[];
+export type RecommendInfo = User & {
+  places: RecommendPlace[];
 };
 
 export const recommendPlaceType = "recommendPlace";

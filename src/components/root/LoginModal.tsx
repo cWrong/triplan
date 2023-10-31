@@ -6,7 +6,7 @@ import Button from "@/components/common/ui/button/Button";
 import IconGoogle from "@/components/common/ui/icons/IconGoogle";
 import IconKakao from "@/components/common/ui/icons/IconKakao";
 import { useInput } from "@/hooks/useInput";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -23,15 +23,15 @@ export default function LoginModal({
 }: Props) {
   const router = useRouter();
 
-  const [username, usernameOnchange, usernameReset] = useInput("");
+  const [email, emailOnchange, emailReset] = useInput("");
   const [password, passwordOnchange, passwordReset] = useInput("");
 
   const submitOnclick = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await signIn("credentials", {
+    await signIn("sanity-login", {
       callbackUrl,
-      username,
+      email,
       password,
     });
   };
@@ -60,10 +60,10 @@ export default function LoginModal({
           <div className={"flex flex-col gap-[20px]"}>
             <Input
               required={true}
-              label={"아이디"}
-              placeholder={"아이디를 입력하세요."}
+              label={"이메일"}
+              placeholder={"이메일를 입력하세요."}
               type={"text"}
-              onChange={usernameOnchange}
+              onChange={emailOnchange}
             />
             <Input
               required={true}

@@ -4,22 +4,21 @@ export default {
   type: 'document',
   fields: [
     {
-      title: 'ID',
-      name: 'id',
-      type: 'number',
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      // like email id
-      title: 'Username',
-      name: 'username',
+      title: 'Email',
+      name: 'email',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.email(),
     },
     {
       // real name
       title: 'Name',
       name: 'name',
+      type: 'string',
+    },
+
+    {
+      title: 'Image',
+      name: 'image',
       type: 'string',
     },
     {
@@ -28,58 +27,31 @@ export default {
       type: 'string',
     },
     {
-      title: 'Email',
-      name: 'email',
-      type: 'string',
-      validation: (Rule) => Rule.email(),
-    },
-    {
-      title: 'Image',
-      name: 'image',
-      type: 'string',
-    },
-    {
       title: 'CustomImage',
       name: 'customImage',
       type: 'image',
     },
     {
-      title: 'Provider',
-      name: 'provider',
-      type: 'string',
-    },
-    {
-      title: 'PWHash',
-      name: 'pwHash',
-      type: 'string',
+      name: 'emailVerified',
+      type: 'datetime',
+      hidden: true,
     },
   ],
   preview: {
     select: {
-      id: 'id',
-      username: 'username',
-      provider: 'provider',
+      email: 'email',
+      name: 'name',
+      nickname: 'nickname',
+      image: 'image',
       customImage: 'customImage',
     },
     prepare(selection) {
-      const {id, username, provider, customImage} = selection
+      const {email, name, nickname, image, customImage} = selection
       return {
-        title: `[${id}] ${username}`,
-        subtitle: provider,
-        media: customImage,
+        title: email,
+        subtitle: nickname ? `${name} (${nickname})` : `${name}`,
+        media: customImage ? customImage : undefined,
       }
     },
   },
-  orderings: [
-    {
-      title: 'ID',
-      name: 'idAsc',
-      by: [
-        {
-          field: 'id',
-          direction: 'asc',
-        },
-      ],
-    },
-  ],
 }

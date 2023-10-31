@@ -5,29 +5,29 @@ import IconPhone from "@/components/common/ui/icons/IconPhone";
 import ButtonLike from "@/components/common/ui/button/ButtonLike";
 import ButtonFlip from "@/components/common/ui/button/ButtonFlip";
 import GaugeBar from "@/components/common/ui/bar/GaugeBar";
-import { getServerSession } from "next-auth";
-import { Place } from "@/model/place";
+import { RecommendPlace } from "@/model/recommendPlace";
 
 type Props = {
-  place: Place;
+  place: RecommendPlace;
 };
 
 export default async function PlaceCard({ place }: Props) {
   const {
-    id,
-    name,
-    country,
-    city,
-    address,
-    phoneNumber,
-    type,
-    description,
-    image,
-    path,
+    star,
+    fitness,
+    place: {
+      id,
+      name,
+      country,
+      city,
+      address,
+      phoneNumber,
+      type,
+      description,
+      image,
+      path,
+    },
   } = place;
-
-  // [!] should change
-  const fitness: number = 57;
 
   return (
     <section
@@ -55,7 +55,7 @@ export default async function PlaceCard({ place }: Props) {
             />
 
             <div className={"absolute right-[16px] bottom-[16px]"}>
-              <ButtonLike placeId={id} status={false} />
+              <ButtonLike placeId={id} status={star} />
             </div>
           </div>
           <div

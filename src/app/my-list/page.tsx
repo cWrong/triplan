@@ -6,7 +6,6 @@ import { redirect } from "next/navigation";
 
 export default async function MyListPage() {
   const session = await getServerSession();
-  console.log("session", session);
   if (!session) {
     redirect("/auth/signin");
   }
