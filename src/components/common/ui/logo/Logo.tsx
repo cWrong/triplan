@@ -10,7 +10,7 @@ export default function Logo({ size }: Props) {
     <Image
       src={LogoText}
       alt={"Triplan"}
-      className={`${size === "small" ? "h-[40px]" : "h-[60px]"} w-fit`}
+      className={`${size === "small" ? "h-[56px]" : "h-[84px]"} w-fit`}
     />
   );
 }

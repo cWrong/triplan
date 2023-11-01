@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { getRecommendPlaceListByEmail } from "@/service/place/place";
 import PlaceCard from "@/components/common/PlaceCard";
+import RecommendPlaceSanity from "@/service/recommend-place/recommendPlace";
 
 export default async function MyPlaceList() {
   const session = await getServerSession();
@@ -10,15 +10,14 @@ export default async function MyPlaceList() {
   }
   const { user } = session;
 
-  console.log(user);
-
-  const placeList = await getRecommendPlaceListByEmail(user.email);
-  console.log(placeList);
+  const placeList = await RecommendPlaceSanity.getRecommendPlaceListByEmail(
+    user.email,
+  );
 
   return (
     <div>
-      {placeList.map((place) => (
-        <PlaceCard place={place} />
+      {placeList.places.map((place) => (
+        <PlaceCard key={place._key} docId={placeList._id} place={place} />
       ))}
     </div>
   );

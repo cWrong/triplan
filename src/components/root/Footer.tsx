@@ -20,7 +20,7 @@ export default function Footer() {
   return (
     <div
       className={
-        "flex flex-col gap-[80px] px-[80px] pt-[80px] pb-[100px] bg-primary-900 "
+        "flex flex-col gap-[40px] px-[80px] pt-[80px] pb-[100px] bg-primary-900 "
       }
     >
       <Image src={LogoTextWhite} alt={"Triplan"} className={"h-[56px] w-fit"} />

@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header
       className={
-        "flex items-center justify-between w-full h-[80px] px-[80px] py-[16px]"
+        "flex items-center justify-between w-full h-[88px] px-[80px] py-[16px]"
       }
     >
       <Link href={"/"}>

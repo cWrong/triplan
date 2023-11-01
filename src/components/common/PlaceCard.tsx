@@ -1,20 +1,21 @@
-import { getPlace } from "@/service/place/place";
 import Image from "next/image";
 import IconLocation from "@/components/common/ui/icons/IconLocation";
 import IconPhone from "@/components/common/ui/icons/IconPhone";
 import ButtonLike from "@/components/common/ui/button/ButtonLike";
 import ButtonFlip from "@/components/common/ui/button/ButtonFlip";
 import GaugeBar from "@/components/common/ui/bar/GaugeBar";
-import { RecommendPlace } from "@/model/recommendPlace";
+import { RecommendInfoItem } from "@/model/recommendPlace";
 
 type Props = {
-  place: RecommendPlace;
+  docId: string;
+  place: RecommendInfoItem;
 };
 
-export default async function PlaceCard({ place }: Props) {
+export default async function PlaceCard({ docId, place }: Props) {
   const {
     star,
     fitness,
+    _key,
     place: {
       id,
       name,
@@ -55,7 +56,7 @@ export default async function PlaceCard({ place }: Props) {
             />
 
             <div className={"absolute right-[16px] bottom-[16px]"}>
-              <ButtonLike placeId={id} status={star} />
+              <ButtonLike docId={docId} _key={_key} status={star} />
             </div>
           </div>
           <div
