@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import Header from "@/components/root/Header";
 import Footer from "@/components/root/Footer";
 import AuthContext from "@/context/AuthContext";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 

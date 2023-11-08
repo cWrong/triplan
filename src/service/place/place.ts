@@ -1,5 +1,11 @@
 import { sanityClient, urlFor } from "@/service/sanity";
-import { EngDetailPlace, Place, getPlaceId, placeType } from "@/model/place";
+import {
+  EngDetailPlace,
+  Place,
+  getPlaceId,
+  placeType,
+  PlaceImage,
+} from "@/model/place";
 
 export default class PlaceSanity {
   static addPlace = async (place: EngDetailPlace) => {
@@ -28,6 +34,23 @@ export default class PlaceSanity {
       phoneNumber,
       image,
       description
+    }`,
+    );
+
+    return {
+      ...res,
+      image: urlFor(res.image).url(),
+    };
+  };
+
+  static getPlaceImage = async (placeId: number): Promise<PlaceImage> => {
+    const res = await sanityClient.fetch<PlaceImage>(
+      `
+    *[_type == "${placeType}" && id == ${placeId}][0]
+    {
+      id,
+      name,
+      image
     }`,
     );
 

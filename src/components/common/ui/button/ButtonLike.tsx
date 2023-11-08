@@ -22,7 +22,6 @@ export default function ButtonLike({ docId, _key, status }: Props) {
       status: !star,
     })
       .then((res) => {
-        console.log(res);
         setStarStatus(!starStatus);
       })
       .catch((err) => {
