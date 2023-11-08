@@ -9,8 +9,7 @@ import { useInput } from "@/hooks/useInput";
 import { useStatus } from "@/hooks/useStatus";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { signUp } from "@/api/auth/auth";
-import { hashing } from "@/utils/password";
+import { signUp } from "next-auth-sanity/client";
 
 type Props = {
   modal: boolean;
@@ -24,23 +23,23 @@ export default function SignupModal({
 }: Props) {
   const router = useRouter();
 
-  const [username, usernameOnchange, usernameReset] = useInput("");
+  const [email, emailOnchange, emailReset] = useInput("");
   const [password, passwordOnchange, passwordReset] = useInput("");
   const [passCheck, passCheckOnchange, passCheckReset] = useInput("");
 
-  const [usernameError, setUsernameError] = useStatus(false);
+  const [emailError, setEmailError] = useStatus(false);
   const [pwError, setPwError] = useStatus(false);
   const [pwCheckError, setPwCheckError] = useStatus(false);
-  const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
+  const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [pwErrorMessage, setPwErrorMessage] = useState("");
   const [pwCheckErrorMessage, setPwCheckErrorMessage] = useState("");
 
   const submitOnclick = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (username.length === 0) {
-      setUsernameError(true);
-      setUsernameErrorMessage("아이디를 입력하세요.");
+    if (email.length === 0) {
+      setEmailError(true);
+      setEmailErrorMessage("이메일을 입력하세요.");
 
       setPwError(false);
       setPwCheckError(false);
@@ -51,7 +50,7 @@ export default function SignupModal({
       setPwError(true);
       setPwErrorMessage("비밀번호를 입력하세요.");
 
-      setUsernameError(false);
+      setEmailError(false);
       setPwCheckError(false);
       return;
     }
@@ -60,22 +59,22 @@ export default function SignupModal({
       setPwCheckError(true);
       setPwCheckErrorMessage("비밀번호가 일치하지 않습니다.");
 
-      setUsernameError(false);
+      setEmailError(false);
       setPwError(false);
       return;
     }
 
-    const res = await signUp({ username, password });
-    if (!res.status) {
-      setUsernameError(true);
-      setUsernameErrorMessage(res.message);
+    const res = await signUp({ email, password });
+    if (!res) {
+      setEmailError(true);
+      setEmailErrorMessage("이미 존재하는 이메일입니다.");
 
       setPwError(false);
       setPwCheckError(false);
       return;
     }
 
-    usernameReset();
+    emailReset();
     passwordReset();
     passCheckReset();
   };
@@ -100,12 +99,12 @@ export default function SignupModal({
           <div className={"flex flex-col gap-[20px]"}>
             <Input
               required={true}
-              label={"아이디"}
-              placeholder={"아이디를 입력하세요."}
+              label={"이메일"}
+              placeholder={"이메일을 입력하세요."}
               type={"text"}
-              onChange={usernameOnchange}
-              error={usernameError}
-              errorMessage={usernameErrorMessage}
+              onChange={emailOnchange}
+              error={emailError}
+              errorMessage={emailErrorMessage}
             />
             <Input
               required={true}

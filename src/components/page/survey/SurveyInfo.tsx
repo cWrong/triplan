@@ -1,6 +1,9 @@
 import IconClock from "@/components/common/ui/icons/IconClock";
 import TTIImage from "@/components/common/TTIImage";
 
+const ImageList = [2, 3, 6, 8];
+// const ImageList = [7, 1, 4, 5];
+
 export default function SurveyInfo() {
   return (
     <section
@@ -18,10 +21,9 @@ export default function SurveyInfo() {
         </p>
       </div>
       <div className={"flex items-center justify-center"}>
-        <TTIImage ttiId={7} />
-        <TTIImage ttiId={1} />
-        <TTIImage ttiId={4} />
-        <TTIImage ttiId={5} />
+        {ImageList.map((ttiId) => (
+          <TTIImage key={ttiId} ttiId={ttiId} />
+        ))}
       </div>
     </section>
   );

@@ -6,6 +6,7 @@ type Props = {
 };
 export default async function TTIImage({ ttiId }: Props) {
   const { name, image } = await getTTIById(ttiId);
+
   return (
     <Image
       src={image}

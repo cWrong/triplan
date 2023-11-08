@@ -26,10 +26,10 @@ export type EngDetailPlace = DetailPlace & {
   description_eng: string | undefined;
 };
 
-export type SimplePlace = Pick<Place, "id" | "name">;
+export type PlaceImage = Pick<Place, "id" | "name" | "image">;
 
 export const getPlaceId = (id: number) => {
-  return `place.${id}`;
+  return `${placeType}.${id}`;
 };
 
 export const placeType = "place";
