@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header
       className={
-        "flex items-center justify-between w-full h-[80px] px-[80px] py-[16px]"
+        "flex items-center justify-between w-full h-[88px] px-[80px] py-[16px]"
       }
     >
       <Link href={"/"}>
@@ -21,10 +21,10 @@ export default function Header() {
         plan
       </Link>
       <Link href={"/survey"} className={"text-h4"}>
-        surveys
+        survey
       </Link>
-      <Link href={"/test-result"} className={"text-h4"}>
-        test-result
+      <Link href={"/survey-result"} className={"text-h4"}>
+        survey-result
       </Link>
       <Link href={"/my-list"} className={"text-h4"}>
         my-list

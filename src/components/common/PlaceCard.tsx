@@ -1,31 +1,34 @@
-import { getPlace } from "@/service/place/place";
 import Image from "next/image";
 import IconLocation from "@/components/common/ui/icons/IconLocation";
 import IconPhone from "@/components/common/ui/icons/IconPhone";
 import ButtonLike from "@/components/common/ui/button/ButtonLike";
 import ButtonFlip from "@/components/common/ui/button/ButtonFlip";
 import GaugeBar from "@/components/common/ui/bar/GaugeBar";
+import { RecommendInfoItem } from "@/model/recommendPlace";
 
 type Props = {
-  placeId: number;
+  docId: string;
+  place: RecommendInfoItem;
 };
 
-export default async function PlaceCard({ placeId }: Props) {
+export default async function PlaceCard({ docId, place }: Props) {
   const {
-    id,
-    path,
-    name,
-    country,
-    city,
-    type,
-    address,
-    phoneNumber,
-    image,
-    description,
-  } = await getPlace(placeId);
-
-  // [!] should change
-  const fitness: number = 57;
+    star,
+    fitness,
+    _key,
+    place: {
+      id,
+      name,
+      country,
+      city,
+      address,
+      phoneNumber,
+      type,
+      description,
+      image,
+      path,
+    },
+  } = place;
 
   return (
     <section
@@ -53,7 +56,7 @@ export default async function PlaceCard({ placeId }: Props) {
             />
 
             <div className={"absolute right-[16px] bottom-[16px]"}>
-              <ButtonLike placeId={id} status={false} />
+              <ButtonLike docId={docId} _key={_key} status={star} />
             </div>
           </div>
           <div

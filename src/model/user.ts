@@ -1,38 +1,24 @@
 import { DocumentMetadata } from "@/model/sanity";
 
 export type User = {
-  id: number;
-  username: string;
-  name?: string;
+  name: string;
   nickname?: string;
-  email?: string;
-  imageUrl?: string;
-  image?: string;
-  provider?: string;
-  pwHash?: string;
+  email: string;
+  image: string;
+  customImage?: string;
 };
 
-export type UserRequest = Pick<
-  User,
-  "username" | "name" | "email" | "imageUrl" | "provider"
->;
+export type UserSession = Pick<User, "name" | "email" | "image">;
 
 export type SanityUser = User & DocumentMetadata;
 
-export type CredentialUser = {
-  username: string;
-  password: string;
-};
-
-export type CredentialUserHashed = {
-  username: string;
-  pwHash: string;
+export const getUserId = (id: number) => {
+  return `${userType}.${id}`;
 };
 
 export const userType = "user";
 
 export const providerType = {
-  credential: "credential",
   google: "google",
   kakao: "kakao",
 };

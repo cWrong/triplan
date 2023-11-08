@@ -23,23 +23,23 @@ export default function LoginModal({
 }: Props) {
   const router = useRouter();
 
-  const [username, usernameOnchange, usernameReset] = useInput("");
+  const [email, emailOnchange, emailReset] = useInput("");
   const [password, passwordOnchange, passwordReset] = useInput("");
 
   const submitOnclick = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const result = await signIn("credentials", {
+    await signIn("sanity-login", {
       callbackUrl,
-      username,
+      email,
       password,
     });
   };
   const googleOnclick = async () => {
-    await signIn("google", { callbackUrl });
+    await signIn("google", { callbackUrl, redirect: false });
   };
   const kakaoOnclick = async () => {
-    await signIn("kakao", { callbackUrl });
+    await signIn("kakao", { callbackUrl, redirect: false });
   };
   const signupOnclick = () => {
     modalHandler(false);
@@ -60,10 +60,10 @@ export default function LoginModal({
           <div className={"flex flex-col gap-[20px]"}>
             <Input
               required={true}
-              label={"아이디"}
-              placeholder={"아이디를 입력하세요."}
+              label={"이메일"}
+              placeholder={"이메일를 입력하세요."}
               type={"text"}
-              onChange={usernameOnchange}
+              onChange={emailOnchange}
             />
             <Input
               required={true}
